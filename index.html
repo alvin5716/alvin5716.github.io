@@ -27,18 +27,23 @@
 		}
 	</style>
 	<script type="text/javascript">
+		//以colorltst[colorcode]決定文字顏色
+		var colorcode = 0;
+		var colorlist = ["#FFFFFF","#D99BB4","#E8E387","#A1D6DD"];
 		//當黑板被點擊
 		function clicked() {
 			var e = event || window.event; //相容IE
-			var fontX = e.pageX; //滑鼠X座標
-			var fontY = e.pageY; //滑鼠Y座標
-			document.getElementById("clickableBG").innerHTML += "<div class='helloworld' style='left:"+fontX+"px;top:"+fontY+"px'>Hello World!</div>"; //寫入一個Hellow World!
+			var cursorX = e.pageX; //滑鼠X座標
+			var cursorY = e.pageY; //滑鼠Y座標
+			//在滑鼠位置寫入文字
+			document.getElementById("clickableBG").innerHTML += "<div class='helloworld' style='left:"+cursorX+"px;top:"+cursorY+"px;color:"+colorlist[colorcode]+"'>Hello World!</div>";
+			if(colorcode<(colorlist.length-1)) colorcode++; else colorcode=0; //替換文字顏色
 		}
 	</script>
 </head>
 <body background="wood.png">
 	<!--黑板板面-->
-	<div id="clickableBG" onclick="clicked()">
-	</div>
+	<div id="clickableBG" onclick="clicked()"></div>
+	<div class='helloworld' style="left:150px;top:50px;color:#FFFFFF">Try to click this blackboard</div>
 </body>
 </html>
