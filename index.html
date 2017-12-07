@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>F74066438的網站</title>
+	<style type="text/css">
+		@font-face {
+			font-family: "chalk";
+			src:url("ITCBLKAD.TTF");
+		}
+		#clickableBG {
+			background-color: #334633;
+			width: 100%;
+			height: 800px;
+			z-index: 1;
+		}
+		.helloworld {
+			font-size: 45px;
+			font-family: "chalk";
+			color: #FFFFFF;
+			z-index: 2;
+			position: absolute;
+			margin-left: -100px;
+			margin-top: -20px;
+		}
+	</style>
+	<script type="text/javascript">
+		function clicked() {
+			var e = event || window.event; //相容IE
+			var fontX = e.pageX;
+			var fontY = e.pageY;
+			document.getElementById("clickableBG").innerHTML += "<div class='helloworld' style='left:"+fontX+"px;top:"+fontY+"px'>Hello World!</div>";
+		}
+	</script>
+</head>
+<body background="wood.png">
+	<div id="clickableBG" onclick="clicked()">
+	</div>
+</body>
+</html>
