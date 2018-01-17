@@ -16,49 +16,58 @@
 		.option:hover {
 			background-color: #4A6349;
 		}
+		/*去除超連結底線*/
 		a:link {text-decoration: none;}
   		a:visited {text-decoration: none;}
 		a:active {text-decoration: none;}
 		a:hover {text-decoration: none;}
 	</style>
-	<script type="text/javascript">
-
-	</script>
 </head>
 <body background="wood.png">
 	<!--黑板板面-->
 	<div id="blackboard">
 		<table cellpadding="0" cellspacing="20" width="100%">
 			<tbody>
-				<tr><td colspan="3">
+				<!--橫幅-->
+				<tr>
+					<td colspan="3">
 						<center><font size="10" color="#FFFFFF" face="微軟正黑體">茅品淵的試作網站</font></center>
-				</td></tr>
+					</td>
+				</tr>
+				<!--水平線-->
 				<tr><td colspan="3">
 						<center><div style="height:3px;width:98%;background-color:#FFFFFF;"></div></center>
 				</td></tr>
 				<tr>
+					<!--左側選項-->
 					<td width="20%" class="option">
-						<center><a target="board" href="std.html"><font class="subtitle" color="#D99BB4">標準差計算</font></a></center>
+						<center><a target="board" href="std.html"><font class="subtitle" color="#D99BB4">標準差、<br>平均數計算</font></a></center>
 					</td>
+					<!--垂直線1-->
 					<td>
 						<div style="height:200px;width:3px;background-color:#D99BB4;"></div>
 					</td>
+					<!--右側嵌入區-->
 					<td rowspan="3">
 						<iframe src="home.html" name="board" style="border:0px;height:900px;width:100%"></iframe>
 					</td>
 				</tr>
 				<tr>
+					<!--左側選項2-->
 					<td class="option">
-						<center><a target="board" href="median.html"><font class="subtitle" color="#E8E387">中位數計算</font></a></center>
+						<center><a target="board" href="median.html"><font class="subtitle" color="#E8E387">數字排序</font></a></center>
 					</td>
+					<!--垂直線2-->
 					<td>
 						<div style="height:200px;width:3px;background-color:#E8E387;"></div>
 					</td>
 				</tr>
 				<tr>
+					<!--左側選項3-->
 					<td class="option">
 						<center><a target="board" href="binary.html"><font class="subtitle" color="#A1D6DD">十進位<br>轉二進位</font></a></center>
 					</td>
+					<!--垂直線3-->
 					<td>
 						<div style="height:200px;width:3px;background-color:#A1D6DD;"></div>
 					</td>

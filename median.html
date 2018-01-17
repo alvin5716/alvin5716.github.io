@@ -7,8 +7,8 @@
 			font-family: "微軟正黑體";
 			font-size: 40px;
 		}
-		font.redfont {
-			color: #D99BB4;
+		font.yellowfont {
+			color: #E8E387;
 		}
 		#input {
 			height: 50px;
@@ -45,47 +45,59 @@
 		var i=0;
 		var nums=[];
 		function input() {
-			nums.push(document.getElementById("input").value);
+			var inputElmt=document.getElementById("input");
+			var numsElmt=document.getElementById("nums");
+			var iElmt=document.getElementById("i");
+			nums.push(inputElmt.value);
 			if(nums[i] == "") alert("請在上方的格子中填入欲輸入的數字！");
 			else {
-				document.getElementById("input").value = "";
-				if(i==0) document.getElementById("nums").innerHTML += nums[i];
-				else document.getElementById("nums").innerHTML += "<br>"+nums[i];
+				inputElmt.value = "";
+				if(i==0) numsElmt.innerHTML += nums[i];
+				else numsElmt.innerHTML += "<br>"+nums[i];
 				i++;
-				document.getElementById("i").innerHTML = i+1;
+				iElmt.innerHTML = i+1;
 			} 
 		}
 		function clear_all() {
+			var numsElmt=document.getElementById("nums");
+			var iElmt=document.getElementById("i");
 			for(var k=0;k<i;k++) nums.pop();
-			document.getElementById("nums").innerHTML = "";
+			numsElmt.innerHTML = "";
 			i=0;
-			document.getElementById("i").innerHTML = 1;
+			numsElmt.innerHTML = 1;
 		}
 		function clear_one() {
+			var numsStmt = document.getElementById("nums");
+			var iStmt = document.getElementById("i");
 			nums.pop();
 			i--;
-			document.getElementById("nums").innerHTML = "";
+			numsStmt.innerHTML = "";
 			for(var k=0;k<i;k++) { 
-				if(k==0) document.getElementById("nums").innerHTML += nums[k];
-				else document.getElementById("nums").innerHTML += "<br>"+nums[k];
+				if(k==0) numsStmt.innerHTML += nums[k];
+				else numsStmt.innerHTML += "<br>"+nums[k];
 			}
-			document.getElementById("i").innerHTML = i+1;
+			iStmt.innerHTML = i+1;
 		}
 		function output() {
-			var std=0, aver=0; //std標準差,aver平均數
-			if(i==0) alert("請輸入至少一個數字！");
-			else {
-				for(var k=0;k<i;k++) aver+=parseFloat(nums[k]);//aver = 每一項加總
-				aver/=i;//aver再除i //aver計算完成
-				for(k=0;k<i;k++) std+=((parseFloat(nums[k])-aver)*(parseFloat(nums[k])-aver));
-				//std = (每一項-aver)^2的加總
-				std/=i;//std再除i
-				std=Math.sqrt(std);//std再開根號 //std計算完成
-				for(k=0;k<2;k++) document.getElementsByClassName("collapse")[k].style.visibility = "visible";
-				document.getElementById("aver").innerHTML=aver;
-				document.getElementById("std").innerHTML=std;
-				//將平均數、標準差的欄位改為可視，並顯示
+			var nums_calTmp;
+			var sortedStmt=document.getElementById("sorted");
+			var medianStmt=document.getElementById("median");
+			var collapseStmts=document.getElementsByClassName("collapse");
+			var nums_cal=[];
+			for(var k=0;k<i;k++) nums_cal.push(nums[k]);
+			for(var k=i-1;k>0;k--)
+				for(var j=0;j<k;j++)
+					if(nums_cal[j]>nums_cal[j+1]) {
+						nums_calTmp=nums_cal[j]; nums_cal[j]=nums_cal[j+1]; nums_cal[j+1]=nums_calTmp;
+					}
+			for(var k=0;k<2;k++) collapseStmts[k].style.visibility = "visible";
+			sortedStmt.innerHTML="排序：";
+			for(var k=0;k<i;k++) {
+				sortedStmt.innerHTML += nums_cal[k] 
+				if(k!=i-1) sortedStmt.innerHTML += ",";
 			}
+			if(i%2==0) medianStmt.innerHTML=(Number(nums_cal[i/2])+Number(nums_cal[i/2-1]))/2;
+			else medianStmt.innerHTML=nums_cal[(i-1)/2];
 		}
 	</script>
 </head>
@@ -94,18 +106,15 @@
 		<tbody>
 			<tr class="collapse">
 				<td>
-					<font class="redfont">平均數： </font>
+					<font class="yellowfont">中位數： </font>
 				</td>
 				<td>
-					<font id="aver" class="redfont"></font>
+					<font id="median"></font>
 				</td>
 			</tr>
 			<tr class="collapse">
-				<td>
-					<font class="redfont">標準差： </font>
-				</td>
-				<td>
-					<font id="std" class="redfont"></font>
+				<td colspan="2">
+					<font class="yellowfont" id="sorted"></font>
 				</td>
 			</tr>
 			<tr>
@@ -121,7 +130,7 @@
 					<button class="buttons" onclick="clear_one()"><font class="inside_button">復原</font></button>
 					<button class="buttons" onclick="clear_all()"><font class="inside_button">清除</font></button>
 					<button class="buttons" onclick="input()"><font class="inside_button">輸入</font></button>
-					<button class="buttons" onclick="output()" style="border-color: #D99BB4;"><font class="inside_button redfont">計算</font></button>
+					<button class="buttons" onclick="output()" style="border-color: #E8E387;"><font class="inside_button yellowfont">排序</font></button>
 				</center></td>
 			</tr>
 			<tr>
