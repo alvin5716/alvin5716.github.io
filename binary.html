@@ -2,13 +2,86 @@
 <html>
 <head>
 	<style type="text/css">
-		
+		font {
+			color: #FFFFFF;
+			font-family: "微軟正黑體";
+			font-size: 40px;
+		}
+		font.bluefont {
+			color: #A1D6DD;
+		}
+		font.smaller {
+			font-size: 30px;
+		}
+		#input {
+			height: 50px;
+			width: 300px;
+			background-color: #334633;
+			border: dotted 3px #FFFFFF;
+			color: #FFFFFF;
+			font-size: 40px;
+			font-family: "微軟正黑體";
+		}
+		#input:hover {
+			background-color: #4A6349;
+		}
+		.buttons {
+			height: 50px;
+			background-color: #334633;
+			border: solid 3px #FFFFFF;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		.buttons:hover {
+			background-color: #4A6349;
+			cursor: pointer;
+		}
+		.inside_button {
+			position: relative;
+			top:-6px;
+		}
+		#collapse {
+			visibility: collapse;
+		}
 	</style>
 	<script type="text/javascript">
-		
+		var i=0;
+		var num;
+		function convert_to_binary() {
+			var binaryElmt=document.getElementById("binary");
+			var collapseElmt=document.getElementById("collapse");
+			var inputElmt=document.getElementById("input");
+			if(inputElmt.value == "") alert("請在上方的格子中填入欲輸入的數字！");
+			else num=parseInt(inputElmt.value);
+			collapseElmt.style.visibility="visible";
+			binaryElmt.innerHTML= "二進位： ";
+			for(var k=31;k>=0;k--) {
+				if(num&(1<<k)) binaryElmt.innerHTML+="1";
+				else binaryElmt.innerHTML+="0";
+			}
+		}
 	</script>
 </head>
 <body bgcolor="#334633">
-	
+	<table cellpadding="10" cellspacing="0" align="center">
+		<tbody>
+			<tr id="collapse">
+				<td colspan="3">
+					<font id="binary" class="bluefont smaller"></font>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<font>請輸入整數： </font>
+				</td>
+				<td>
+					<input type="number" id="input">
+				</td>
+				<td>
+					<button class="buttons" onclick="convert_to_binary(0)" style="border-color: #A1D6DD;"><font class="inside_button bluefont">轉換</font></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>
